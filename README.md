@@ -100,18 +100,18 @@ public function curl_request($url,$post=&#39;&#39;,$referer=&#39;&#39;){
 
 <p>我使用的是<code>macOS</code>上一款名为<code>Charles</code>的数据抓包软件，谷歌Chrome浏览器<code>Inspect</code>中的<code>Network</code>功能应该也能完成类似的抓包操作。</p>
 
-<p><img src="media/15170446927157/charles.png" alt="charles"/>￼</p>
+<p><img src="http://jujuber.me/juju/wp-content/uploads/2018/01/charles.png" alt="charles"/>￼</p>
 
 <p>大家可以根据需求自行选择喜欢的数据抓包软件。</p>
 
 <h4 id="toc_6">分析登陆的URL</h4>
 
 <p>首先我们来到教务处这个丑陋的界面。<br/>
-<img src="media/15170446927157/15170730048240.jpg" alt=""/>￼</p>
+<img src="http://jujuber.me/juju/wp-content/uploads/2018/01/login.jpg" alt=""/>￼</p>
 
 <p>全国大多数高校应该都在用这套系统吧。然后我们将目光转移到地址栏上，观察一下当前我们访问的URL。</p>
 
-<p><img src="media/15170446927157/15170731435829.jpg" alt=""/>￼</p>
+<p><img src="http://jujuber.me/juju/wp-content/uploads/2018/01/url.jpg" alt=""/>￼</p>
 
 <p>出于隐私不泄漏学校教务的地址。但是多次访问后我发现，每一次进入教务系统，我都会被分配一个随机24位的路径。我试着在网上找了很多种方式破译都了了收场。</p>
 
@@ -130,7 +130,7 @@ public function curl_request($url,$post=&#39;&#39;,$referer=&#39;&#39;){
 </code></pre>
 
 <p>我为URL使用<code>get_headers()</code>方法，第二个参数是返回数组的类型（0为索引数组，1为关联数组）。在返回的数组中取其中的<code>[&quot;Location&quot;]</code>，正好就是每次访问需要的随机路径啦，在正则匹配后得到一个我们希望的结果，加入<code>$_SESSION</code>中。<br/>
-<img src="media/15170446927157/15170737504091.jpg" alt=""/>￼</p>
+<img src="http://jujuber.me/juju/wp-content/uploads/2018/01/fuckingcode.jpg" alt=""/>￼</p>
 
 <p>至此，URL的分析算是大功告成了。</p>
 
@@ -142,13 +142,13 @@ public function curl_request($url,$post=&#39;&#39;,$referer=&#39;&#39;){
 
 <p>做一次对教务系统的登陆操作并在Charles中检索后，我们便可以清楚的得到访问一次教务系统需要的请求。</p>
 
-<p><img src="media/15170446927157/15170740239627.jpg" alt=""/>￼</p>
+<p><img src="http://jujuber.me/juju/wp-content/uploads/2018/01/request.jpg" alt=""/>￼</p>
 
 <p>且不说验证码，我们先看一下做一次登陆向<code>Default.aspx</code>中的请求内容。</p>
 
-<p><img src="media/15170446927157/15170741238909.jpg" alt=""/>￼</p>
+<p><img src="http://jujuber.me/juju/wp-content/uploads/2018/01/post.jpg" alt=""/>￼</p>
 
-<p><img src="media/15170446927157/15170741597529.jpg" alt=""/>￼</p>
+<p><img src="http://jujuber.me/juju/wp-content/uploads/2018/01/ispost.jpg" alt=""/>￼</p>
 
 <p>两张图片已经可以说明问题，登陆表单的验证采用了<code>Post</code>的方式，<code>Post</code>请求到<code>Default.aspx</code>页面。</p>
 
@@ -391,6 +391,6 @@ header(&quot;Content-Type:text/html;charset=gb2312&quot;);
 
 <p>最后附上张成果图：</p>
 
-<p><img src="media/15170446927157/15170780427968.jpg" alt=""/>￼</p>
+<p><img src="http://jujuber.me/juju/wp-content/uploads/2018/01/final.jpg" alt=""/>￼</p>
 
 <p>不要吐槽学渣</p>
